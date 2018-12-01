@@ -4,6 +4,9 @@ var path = require("path");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+app.use(express.urlencoded({ extended: true}));
+app.use(express.json());
+
 var reserveList = [
    {
       id: 12123,
@@ -40,13 +43,13 @@ app.get("/", function(req, res) {
 
  //post request
  app.post("/api/reservations", (req, res) => {
-   res.send("post worked!");
+   // res.send("post worked!");
    
-   // var newReserve = req.body;
-   // console.log(newReserve);
-   // console.log(reserveList);
-   // reserveList.push(newReserve);
-   // res.json(newReserve);
+   var newReserve = req.body;
+   console.log(newReserve);
+   console.log(reserveList);
+   reserveList.push(newReserve);
+   res.json(newReserve);
  });
 
 //initiate server
